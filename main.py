@@ -50,7 +50,7 @@ FONT_SIZE = 24
 SMALL_SPACE = int(FONT_SIZE/4)
 
 pg.init()
-screen = pg.display.set_mode((640, 480))
+screen = pg.display.set_mode((800, 600))
 COLOR_INACTIVE = pg.Color('lightskyblue3')
 COLOR_ACTIVE = pg.Color('dodgerblue2')
 FONT = pg.font.Font(None, FONT_SIZE)
@@ -104,12 +104,39 @@ class InputBox:
         self.update()
 
 # class Text:
+#     def __init__(self, x, y, text=''):
+#         self.x = x
+#         self.y = y
+#         self.w = 0
+#         self.h = 0
+
+#         self.text = text
+#         self.update_size()
+
+#         self.color = COLOR_ACTIVE
+#         self.txt_surface = FONT.render(text, True, self.color)
+#         # create a rectangular object for the 
+#         # text surface object 
+#         self.txt_rect = self.txt_surface.get_rect()  
+        
+
+#     def update_size(self):
+#         self.w, self.h= FONT.size(self.text)
+
+#     def update_text(self, text):
+#         self.text = text
+#         self.txt_surface = FONT.render(self.text, True, self.color) 
+        
+#     def display(self, screen):
+#         screen.blit(self.txt_surface, (self.x, self.y))
+#         pg.draw.rect(screen, self.color, self.txt_rect, 2)
 
 
 def main():
     clock = pg.time.Clock()
-    f1_input = InputBox(10, 10, 140, FONT_SIZE)
-    f2_input = InputBox(10, 10+FONT_SIZE+SMALL_SPACE, 140, FONT_SIZE)
+    f1_txt = Text(10,10, "F1 (Hz): ")
+    # f1_input = InputBox(10+f1_txt.w+SMALL_SPACE, 10+SMALL_SPACE, 140, FONT_SIZE)
+    # f2_input = InputBox(10, 10+FONT_SIZE+SMALL_SPACE, 140, FONT_SIZE)
     done = False
 
     f1 = ''
@@ -119,18 +146,19 @@ def main():
         for event in pg.event.get():
             if event.type == pg.QUIT:
                 done = True
-            f1_input.handle_event(event)
-            f2_input.handle_event(event)
+            # f1_input.handle_event(event)
+            # f2_input.handle_event(event)
 
         screen.fill(BACKGROUND_COLOR)
-        f1_input.display(screen)
-        f2_input.display(screen)
-
+        f1_txt.display
+        # f1_input.display(screen)
+        # f2_input.display(screen)
+        
         pg.display.flip()
         clock.tick(30)
     
-    print('F1: ', f1_input.text)
-    print('F2: ', f2_input.text)
+    # print('F1: ', f1_input.text)
+    # print('F2: ', f2_input.text)
 
 
 if __name__ == '__main__':
